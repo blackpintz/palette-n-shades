@@ -1,0 +1,8 @@
+.ShadeColumn {
+    padding: 8rem;
+}
+
+#shadeGrid > .ShadeRow {
+    padding-top: 0;
+    padding-bottom: 0;
+}

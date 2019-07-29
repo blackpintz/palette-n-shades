@@ -1,0 +1,69 @@
+import React, {Component} from 'react'
+ import {Grid, Message, Button, Icon} from 'semantic-ui-react'
+ import {Link} from 'react-router-dom'
+ import uuid from 'uuid/v1'
+ import {connect} from 'react-redux'
+ 
+
+
+ const DivideArray = (arr, arrSize) => {
+    let index = 0;
+    let arrLength = arr.length;
+    let tempArray = []
+    
+    for(index = 0; index< arrLength; index +=arrSize) {
+        let arrChunk = arr.slice(index, index+arrSize)
+        tempArray.push(arrChunk)
+    }
+    return tempArray
+}
+
+
+
+class MappedColor extends Component {
+
+
+    render () {
+       
+        let result = DivideArray(this.props.colorArray, 4)
+        return (
+            <div>
+            {this.props.colorArray.length === 0 ? (
+                <Message info>
+                <Message.Header>Create a new palette..</Message.Header>
+                </Message>
+
+            ): (
+                <Grid columns={4} padded id="Pallete">
+            {result.map((color) => {
+                return (
+                    <Grid.Row className="Row" key={uuid()}>
+                    {color.map((c) => {
+                        return(
+                            <Grid.Column textAlign = 'center' className="Column" key = {uuid()} style={{backgroundColor: c.Hex}}>
+                            <Button as = {Link}  to = {`/palette/shade_of/${c.Hex.substring(1)}`}>More</Button>
+                            <Icon onClick = {() => this.props.deleteColor(c._id)} name = 'trash'/>
+                            </Grid.Column>
+                        )
+                    })}
+                    </Grid.Row> 
+                )  
+            })}
+            </Grid>
+            )}
+            </div>
+            
+        )
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteColor: (id) => {dispatch({type: 'REMOVE_DISPLAY_COLOR', id: id})}
+    }
+
+}
+const Colors = connect(null, mapDispatchToProps)(MappedColor)
+
+export {DivideArray, Colors as default}

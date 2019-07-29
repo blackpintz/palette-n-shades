@@ -1,0 +1,9 @@
+#Pallete > .Row {
+    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.Column {
+    padding: 10rem;
+}

@@ -1,1 +1,1 @@
-A web app from creating palettes of your favorite colors.
+A web app for creating palettes of your favorite colors.

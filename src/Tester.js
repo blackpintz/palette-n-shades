@@ -55,56 +55,7 @@ const store = ConfigureStore()
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-        colorArray: [
-         {
-             Hex: '#ff3300'
-         },
-         {
-             Hex: "#b32d2d"
-         },
-         {
-             
-             Hex: "#7bb32d"
-         },
-         {
-             Hex: "#4f751b"
-         },
-         {
-             Hex: "#1b7566"
-         },
-         {
-             Hex: "#1b1f75"
-         },
-         {
-             Hex: "#060946"
-         },
-         {
-             Hex: "#410646"
-         },
-         {
-             Hex: '#c20fd2'
-         },
-         {
-             Hex: "#797779"
-         },
-         {
-            Hex: '#9C2E2E'
-        },
-        {
-            Hex: '#5465BF'
-        }
-        ],
-        palleteNames: [
-            {
-                Name: 'Material UI',
-                myArray: [{Hex: "#bd30c3"}]
-            }
-        ],
-        displayArray: [],
-        
-    }
-}
+  }
 
 addColor = (color) => {
     let id = {_id: uuid()}
@@ -257,3 +208,54 @@ updateName = (id, updates) => {
 //     colorArray={this.props.palleteNames.filter(name => name.Name.replace(/\s+/g, '-').toLowerCase() === routeProps.match.params.name)} {...routeProps} />} />
 // colorProps = {this.props.Palette.map(p => p.myArray)}
 // {!this.state.isEditing ? <Icon name = 'pencil' onClick = {this.toggleEdit} />: "" }
+
+// CAME FROM ColorPalette.js
+// <Grid id = 'SmallGrid' verticalAlign = 'bottom'>
+// <Grid.Column floated = 'left' width = {7} id = 'leftColumn'>
+// <Header 
+// as = 'h5' 
+// textAlign = 'left'
+// color = {this.state.darkNum< -1 ? 'brown' : 'teal'} 
+// className = 'Color-Header'>{c.colorName.toUpperCase()}</Header>
+// </Grid.Column>
+// <Grid.Column floated = 'right' width = {5} id = 'rightColumn'>
+// <Button 
+// size = 'tiny' 
+// floated = 'right' 
+// id = "rightBtn" 
+// as = {Link}  to = {`/palette/shade_of/${c.Hex.substring(1)}`}
+// style = {{backgroundColor: c.Hex, border: `0.2px solid rgba(0,0,0,.1)`}}>MORE</Button>
+// </Grid.Column>
+// </Grid>
+
+// CAME FROM PaletteColors.js
+// <Grid>
+// <Grid.Column floated ='right' width = {12}>
+// <Header as = 'h4' className = 'Color-Header' color = 'teal'>{c.colorName.toUpperCase()}</Header>
+// </Grid.Column>
+// <Grid.Column floated = 'left' textAlign = 'center' width = {3}>
+// <Icon 
+// onClick = {() => this.props.deleteColor(c._id)} 
+// link 
+// name = 'trash' 
+// inverted color = 'red'/>
+// </Grid.Column>
+// </Grid>
+
+<Modal
+trigger={<Button color = 'blue' disabled = {this.props.colorArray.length === 0} onClick = {this.show('inverted')}>Save changes</Button>}
+open = {this.state.modalOpen}
+dimmer = {this.state.dimmer}
+size = 'small'>
+<Modal.Content>
+<h3>Are you sure you want to edit your palette?</h3>
+</Modal.Content>
+<Modal.Actions>
+<Button color = 'green' onClick = {this.handleClose}>
+    <Icon name='remove' /> No
+</Button>
+<Button onClick = {this.handleUpdate} color='green'>
+    <Icon name='checkmark' /> Yes
+</Button>
+</Modal.Actions>
+</Modal>

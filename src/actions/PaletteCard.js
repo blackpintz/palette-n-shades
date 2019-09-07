@@ -10,7 +10,7 @@ const addToDB = (paletteData) => (
     (dispatch) => {
        return database.ref("Palettes").push(paletteData).then((ref) => {
             dispatch(addPalette({
-                DBId: ref.key,
+                id: ref.key,
                 ...paletteData
             }))
         })

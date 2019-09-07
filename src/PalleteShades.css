@@ -1,8 +1,9 @@
-.ShadeColumn {
-    padding: 8rem;
+
+#shadeGrid > .ShadeColumn {
+    padding-top: 12rem;
+    padding-bottom: 0;
 }
 
-#shadeGrid > .ShadeRow {
-    padding-top: 0;
-    padding-bottom: 0;
+#padded {
+    padding-left: 2.5%;
 }

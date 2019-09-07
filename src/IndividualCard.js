@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Card, Image, Grid, Form, Icon, Label, Popup} from 'semantic-ui-react'
+import {Button, Card, Image, Grid, Form, Icon, Label, Popup, Modal} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {removeFromDB, updateDB} from './actions/PaletteCard'
 import {Link} from 'react-router-dom'
@@ -14,11 +14,21 @@ class OneCard extends Component {
         this.state = {
             isEditing: false,
             EditedNameExists: false,
-            Name: this.props.palette.Name
+            Name: this.props.palette.Name,
+            modalOpen: false
         }
     }
+
+    show = dimmer => () => this.setState({ dimmer, modalOpen: true })
+    handleOpen = () => this.setState({modalOpen: true})
+    handleClose = () => this.setState({modalOpen: false})
+    
+
     handleDelete = () => {
         this.props.dispatch(removeFromDB({id: this.props.palette.id}))
+        this.setState({
+            modalOpen: false
+        })
     }
 
     toggleEdit = () => {
@@ -48,7 +58,7 @@ class OneCard extends Component {
         let cardId  = this.props.palette.id
         return (
             <Card>
-            <Image src = 'https://images.pexels.com/photos/1212406/pexels-photo-1212406.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' wrapped ui={false}/>
+            <Image src = 'https://cdn.pixabay.com/photo/2017/02/15/20/34/striped-2069813__340.png' wrapped ui={false}/>
             <Card.Content>
             <Grid>
             <Grid.Column floated = 'left' width = {10}>
@@ -56,7 +66,7 @@ class OneCard extends Component {
                 <Form onSubmit = {this.handleSave}>
                 <input type = 'text' name = 'Name' value = {this.state.Name} onChange = {this.handleChange} />
                 {this.state.EditedNameExists? <Label basic color = 'red' pointing>There is a palette with that name.</Label>: ""}
-                <Button size = 'mini'>Save</Button>
+                <Button disabled = {this.state.Name.length === 0} size = 'mini'>Save</Button>
                 <Button size = 'mini' icon = 'delete' onClick = {this.toggleEdit}/>
                 </Form>
             ): (
@@ -66,7 +76,7 @@ class OneCard extends Component {
                 </div>
             )}
             </Grid.Column>
-            <Grid.Column floated = 'right' width={5}>
+            <Grid.Column floated = 'right' width={6}>
             <Button.Group id = "ButtonIcon" color = 'grey' icon>
             <Popup 
             trigger = {<Button id = "PencilIcon" as = {Link} to =  {`/palette/${cardName}/edit/${cardId}`}>
@@ -76,9 +86,28 @@ class OneCard extends Component {
             position = 'top center'
             size = 'tiny'/>
             
-            <Button onClick = {this.handleDelete} id = "DeleteIcon">
+            <Modal
+            trigger={<Button onClick = {this.show('inverted')} id = "DeleteIcon">
             <Icon color = 'black'  link name = 'delete' />
+            </Button>}
+            open = {this.state.modalOpen}
+            dimmer = {this.state.dimmer}
+            size = 'small'>
+            <Modal.Content>
+            <h3>Are you sure you want to delete your palette?</h3>
+            </Modal.Content>
+            <Modal.Actions>
+            <Button color='red' onClick = {this.handleClose} inverted>
+              <Icon name='remove' /> No
             </Button>
+            <Button onClick = {this.handleDelete} color='green' inverted>
+              <Icon name='checkmark' /> Yes
+            </Button>
+          </Modal.Actions>
+            </Modal>
+
+
+            
             </Button.Group>
             </Grid.Column>
             </Grid>

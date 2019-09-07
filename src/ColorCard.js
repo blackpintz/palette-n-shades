@@ -1,29 +1,72 @@
 import React, {Component} from 'react'
 import SoloCard from './IndividualCard'
-import {Menu, Container, Card} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
-
-
+import {Container, Grid, Card, Header} from 'semantic-ui-react'
+import { Link} from 'react-router-dom'
+import './ColorCard.css'
 
 
 class ColorCard extends Component {
     render () {
        return (
-           <div>
-           <Menu inverted>
-            <Menu.Item header>Home</Menu.Item>
-            <Menu.Item as = {Link} to = '/createpalette'>Create a Palette</Menu.Item>
-            </Menu>
-            <Container>
-            <Card.Group itemsPerRow={4}>
+           <Container>
+            <Grid>
+            <Grid.Row columns = {3} id = "Top-Row" only = 'computer'>
+            <Grid.Column width = {3}>
+            </Grid.Column>
+            <Grid.Column width = {10}>
+            <Grid>
+            <Grid.Column floated = 'left' width = {5}>
+            <Header size = 'small'>Explore Colors</Header>
+            </Grid.Column>
+            <Grid.Column floated = 'right' textAlign = 'right' width = {5}>
+            <Header as = {Link} to = '/createpalette' size = 'tiny' color = 'blue' className = "PaletteLink">Create a Palette</Header>
+            </Grid.Column>
+            </Grid>
+            </Grid.Column>
+            <Grid.Column width = {3}>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row only = 'computer'>
+            <Grid.Column width = {3}></Grid.Column>
+            <Grid.Column width = {10}>
+            <Card.Group  itemsPerRow = {3}>
            {this.props.palleteNames.map((palette) => {
                return (
-                <SoloCard key = {palette.id} palette = {palette}/>
+                    <SoloCard key = {palette.id} palette = {palette}/>  
                )
            })}
            </Card.Group>
+           </Grid.Column>
+           <Grid.Column width = {3}></Grid.Column>
+           </Grid.Row>
+           <Grid.Row only = 'tablet mobile'>
+           <Grid.Column  id = 'MobileColumn'>
+           <Header size = 'medium'>Explore colors</Header>
+           <Header as = {Link} to = '/createpalette' size = 'tiny' color = 'blue' className = "PaletteLink">Create a Palette</Header>
+           </Grid.Column>
+           </Grid.Row>
+           <Grid.Row only = 'tablet'>
+           <Grid.Column  id = "CardColumn">
+           <Card.Group itemsPerRow = {2}>
+           {this.props.palleteNames.map((palette) => {
+            return (
+                 <SoloCard key = {palette.id} palette = {palette}/>   
+                )
+            })}
+            </Card.Group>
+           </Grid.Column>
+           </Grid.Row>
+           <Grid.Row only = 'mobile'>
+           <Grid.Column id = "CardColumn">
+           {this.props.palleteNames.map((palette) => {
+            return (
+                 <SoloCard key = {palette.id} palette = {palette}/>   
+                )
+            })}
+           </Grid.Column>
+           </Grid.Row>
+           </Grid>
            </Container>
-           </div>
        )
     }
 }

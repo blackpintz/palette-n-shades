@@ -1,0 +1,20 @@
+#Top-Row {
+    margin-top: 20px;
+    padding-bottom: 7px;
+}
+
+.PaletteLink {
+    text-decoration: underline;
+}
+
+#MobileColumn {
+    padding-top: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#CardColumn {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+

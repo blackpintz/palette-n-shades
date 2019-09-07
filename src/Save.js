@@ -59,10 +59,9 @@ class SavePalette extends Component {
     )
 
     render() {
-        // console.log(this.props.Palettes.map(palette => palette.Name).includes(this.state.Name.trim()))
         return (
             <Modal
-            trigger={<Button disabled = {this.props.colorslength === 0} onClick = {this.show('inverted')}>Save</Button>}
+            trigger={<Button color = 'blue' disabled = {this.props.colorslength === 0} onClick = {this.show('inverted')}>Save</Button>}
             open = {this.state.modalOpen}
             dimmer = {this.state.dimmer}
             size = 'small'>
@@ -74,7 +73,7 @@ class SavePalette extends Component {
             <Form.Field inline>
             <label>Name of the pallete</label>
             <input type = "text" placeholder = 'Name of the pallete' name ="Name"  value = {this.state.Name} onChange= {this.handleChange} />
-            <Button>Submit</Button>
+            <Button disabled = {this.state.Name.length === 0}>Submit</Button>
             </Form.Field>
             </Form>
             {this.state.NameExistMessage? this.NegativeMessage() : ''}

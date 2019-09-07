@@ -1,3 +1,7 @@
 /*******************************
          Site Overrides
 *******************************/
+.ui.grid > .row > .column {
+    padding-left: 0;
+    padding-right: 0;
+}

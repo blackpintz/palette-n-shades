@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
- import {Grid, Message, Button, Icon} from 'semantic-ui-react'
- import {Link} from 'react-router-dom'
+ import {Grid, Icon, Header} from 'semantic-ui-react'
  import uuid from 'uuid/v1'
  import {connect} from 'react-redux'
  
@@ -21,28 +20,28 @@ import React, {Component} from 'react'
 
 
 class MappedColor extends Component {
-
-
     render () {
        
         let result = DivideArray(this.props.colorArray, 4)
         return (
             <div>
             {this.props.colorArray.length === 0 ? (
-                <Message info>
-                <Message.Header>Create a new palette..</Message.Header>
-                </Message>
-
+                <Header as = 'h2' color = 'blue'>Create a new Palette..</Header>
             ): (
                 <Grid columns={4} padded id="Pallete">
             {result.map((color) => {
                 return (
-                    <Grid.Row className="Row" key={uuid()}>
+                    <Grid.Row key={uuid()} className = 'Row'>
                     {color.map((c) => {
                         return(
-                            <Grid.Column textAlign = 'center' className="Column" key = {uuid()} style={{backgroundColor: c.Hex}}>
-                            <Button as = {Link}  to = {`/palette/shade_of/${c.Hex.substring(1)}`}>More</Button>
-                            <Icon onClick = {() => this.props.deleteColor(c._id)} name = 'trash'/>
+                            <Grid.Column id = 'InfoGrid' className="ShowColumn" key = {uuid()} style={{backgroundColor: c.Hex}}>
+                            <Header as = 'h4' id = 'Color-Header'>{c.colorName.toUpperCase()}</Header>
+                            <Icon 
+                                onClick = {() => this.props.deleteColor(c._id)}
+                                id = 'IconGrid' 
+                                link 
+                                name = 'trash' 
+                                inverted color = 'red'/>
                             </Grid.Column>
                         )
                     })}
@@ -67,3 +66,4 @@ const mapDispatchToProps = (dispatch) => {
 const Colors = connect(null, mapDispatchToProps)(MappedColor)
 
 export {DivideArray, Colors as default}
+

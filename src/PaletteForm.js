@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {ChromePicker} from 'react-color'
-import { Form, Button, Message} from 'semantic-ui-react'
+import { Form, Button, Message, Divider} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
@@ -10,7 +10,8 @@ class FormColor extends Component {
         super(props)
         this.state = {
             ColorExistsMessage: false,
-            PaletteFull: false
+            PaletteFull: false,
+            NameOfColor: ''
         }
     }
 
@@ -18,19 +19,37 @@ class FormColor extends Component {
         this.props.changeColor({Hex: color.hex})
       };
 
+    handleChangeName = (e) => {
+        const val = e.target.value
+        this.setState (() => {
+            return {
+                NameOfColor: val, 
+            }
+        })
+    }  
     
     handleSubmit = (e) => {
         e.preventDefault()
         let HexArr = this.props.Display.map(color => color.Hex)
+        let colorValue = Object.assign({}, this.props.color, {colorName: this.state.NameOfColor})
         if(!HexArr.includes(this.props.color.Hex)){
-            this.props.addColor(this.props.color)
+            this.props.addColor(colorValue)
             this.props.changeColor()
+            this.setState(() => ({NameOfColor: ''}))
         } 
         
         this.setState((st) => ({
             ColorExistsMessage: this.props.Display.map(color => color.Hex).includes(this.props.color.Hex)
         }))
         
+    }
+
+    handleClearing = () => {
+        this.props.clearPalette()
+        this.setState(() => ({
+            ColorExistsMessage: false,
+            NameOfColor: ''
+        }))
     }
 
     NegativeMessage = () => (
@@ -49,15 +68,27 @@ class FormColor extends Component {
 
     render() {
         return (
+            <div>
+            <Button color = 'red' onClick = {this.handleClearing}>Clear Palette</Button>
+            <Divider hidden></Divider>
             <Form onSubmit = {this.handleSubmit}>
             <Form.Field>
             <ChromePicker color = {this.props.color.Hex}
             onChangeComplete = {this.handleChangeComplete} />
             </Form.Field>
-            <Button disabled = {this.props.Display.length === 5}>Submit</Button>
+            <Form.Field inline>
+            <label>Color Name:</label>
+            <input type = 'text' placeholder = 'color name' name = 'NameOfColor' value = {this.state.NameOfColor} onChange = {this.handleChangeName} />
+            </Form.Field>
             {this.state.ColorExistsMessage? this.NegativeMessage(): ""}
-            {this.props.Display.length === 5 ? this.FullMessage(): ""}
+            {this.props.Display.length === 20 ? (
+                <Button color = 'teal' disabled ={true}>PALETTE FULL</Button>
+            ) : (
+                <Button color = 'green'>ADD COLOR</Button>
+            )}
+            
             </Form>  
+            </div>
         )
     }
 }
@@ -69,7 +100,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    changeColor: (color) => {dispatch({type: 'CHANGE_COLOR', color: color ? color : {Hex:'#000000'}})}
+    changeColor: (color) => {dispatch({type: 'CHANGE_COLOR', color: color ? color : {Hex:'#000000'}})},
+    clearPalette: () => {dispatch({type: 'EMPTY_DISPLAY_COLOR'})}
 })
 
 const ColorForm = connect(mapStateToProps, mapDispatchToProps)(FormColor)

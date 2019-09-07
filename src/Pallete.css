@@ -1,9 +1,85 @@
 #Pallete > .Row {
-    padding: 0;
     padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    
+}
+
+
+.Column {
+    padding-top: 15rem;
+}
+
+.ShowColumn {
+    width: 20%;
+    height: 300px;
+   
+}
+
+#Color-Header {
+    letter-spacing: 1px;
+    height: 20px;
+    margin-bottom: 2.5px;
+    padding-left: 2px;
+}
+
+#SmallGrid {
+    margin: 0;
+}
+
+#rightBtn {
+    border-radius: 0;
+    border-right: 0.3px solid;
+    height: 30px;
+    margin-right: 0;
+    color: white;
+}
+
+#leftColumn {
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+#rightColumn {
+    padding-right: 0;
     padding-bottom: 0;
 }
 
-.Column {
-    padding: 10rem;
+#IconGrid {
+    margin-bottom: 0.3em;
 }
+
+#topColumn {
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+#InfoGrid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#Copy-button {
+width: 100px;
+position: absolute;
+top: 40%;
+left: 35%;
+opacity: 0;
+color: white;
+transition: 2s;
+}
+
+.ShowColumn:hover #Copy-button {
+    opacity: 1;
+}
+
+#CopyMessage {
+    transition: 3s
+}
+
+#EmptyHeader {
+    margin-left: 20px
+}
+
+

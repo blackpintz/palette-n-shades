@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import SoloCard from './IndividualCard'
 import {Container, Grid, Card, Header, Loader, Dimmer} from 'semantic-ui-react'
 import { Link} from 'react-router-dom'
+import logo from './images/logo.svg'
 import './ColorCard.css'
 
 
@@ -30,7 +31,7 @@ class ColorCard extends Component {
                 <Grid.Column width = {10}>
                 <Grid>
                 <Grid.Column floated = 'left' width = {5}>
-                <Header size = 'small'>Explore Colors</Header>
+                <img alt = 'logo' src = {logo}/>
                 </Grid.Column>
                 <Grid.Column floated = 'right' textAlign = 'right' width = {5}>
                 <Header as = {Link} to = '/createpalette' size = 'tiny' color = 'blue' className = "PaletteLink">Create a Palette</Header>
@@ -55,7 +56,7 @@ class ColorCard extends Component {
                </Grid.Row>
                <Grid.Row only = 'tablet mobile'>
                <Grid.Column  id = 'MobileColumn'>
-               <Header size = 'medium'>Explore colors</Header>
+               <img alt = 'logo' src = {logo}/>
                <Header as = {Link} to = '/createpalette' size = 'tiny' color = 'blue' className = "PaletteLink">Create a Palette</Header>
                </Grid.Column>
                </Grid.Row>

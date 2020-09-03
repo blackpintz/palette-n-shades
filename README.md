@@ -1,1 +1,2 @@
-A web app for creating palettes of your favorite colors.
+A clone of websites like [Flat ui colors](https://flatuicolors.com/).
+

@@ -18,7 +18,9 @@ Create a color palette with all of your favorite colors. The application generat
 ## Built with
 
 - Javascript
-- HTML & CSS
+- Reactjs
+- chroma-js
+- firebase
 
 ## Live Demo 
 

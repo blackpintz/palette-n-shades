@@ -5,8 +5,15 @@
 
 Create a color palette with all of your favorite colors. The application generates twenty shades of every color added in the palette. 
 
+### Home page
 ![screenshot](./src/images/frontPage.png)
+
+### pink-ui palette page
 ![screenshot](./src/images/palette.png)
+
+### shades for the bubblegum color in the pink-ui palette
+
+![screenshot](./src/images/shades.png)
 
 ## Built with
 
@@ -15,7 +22,7 @@ Create a color palette with all of your favorite colors. The application generat
 
 ## Live Demo 
 
-[Website link](https://rawcdn.githack.com/blackpintz/Todo-List/2eefcc4974cb22fd5232f0e892b35d712d81ffc9/dist/index.html)
+[Website link](https://palette-n-shades.com/)
 
 ## Getting Started
 
@@ -30,9 +37,7 @@ To get a local copy up and running follow these simple example steps.
 - Clone the project.
 - Cd into the project directory.
 - Run ```npm install``` to install package.json libraries.
-- Run ```npm run build```
-- Open ```index.html``` file on your localhost and play the game.
-
+- Run ```npm start``` and view the project on your localhost.
 
 
 ## Author
@@ -45,7 +50,7 @@ To get a local copy up and running follow these simple example steps.
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/blackpintz/Todo-List/issues).
+Feel free to check the [issues page](https://github.com/blackpintz/palette-n-shades/issues).
 
 ## Show your support
 
@@ -53,5 +58,5 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- [Microverse](https://www.microverse.org/)
+- [Colt Steele](https://github.com/Colt)
 
